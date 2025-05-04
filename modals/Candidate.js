@@ -23,6 +23,16 @@ const CandidateSchema = new mongoose.Schema({
         required: true
 
     },
+    department: {
+        type: String,
+        // required: true
+
+    },
+    date_of_joining: {
+        type: Date,
+        required: true
+
+    },
     experience: {
         type: Number,
         required: true,

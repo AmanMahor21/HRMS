@@ -1,8 +1,12 @@
 import express from 'express';
-import { addNewCandidate } from '../controllers/candidateController.js';
+import { addNewCandidate, getAllUser, findOneUser, updateUserStatus, editUser, deleteUser } from '../controllers/candidateController.js';
 
 const router = express.Router();
 
 router.post('/add-new', addNewCandidate);
-// router.post('/login', login);
+router.get('/get-users', getAllUser);
+router.get('/get-user/:email', findOneUser);
+router.patch('/update-user-status', updateUserStatus);
+router.patch('/edit-user/:id', editUser);
+router.delete('/delete-user/:id', deleteUser);
 export default router;
