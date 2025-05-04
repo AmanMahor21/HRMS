@@ -6,20 +6,24 @@ import bcrypt from 'bcrypt';
 
 export const register = async (req, res) => {
     try {
-        const { full_name, email, password, } = req.body;
+        const { full_name, email, password } = req.body;
 
-        console.log(full_name, email, password, 'userr');
+        console.log(full_name, email, password, 'user input');
+
+        // Check if user with email already exists
+        const existingUser = await User.findOne({ email });
+        console.log(existingUser, 'existing user check');
+
+        if (existingUser) {
+            return res.status(400).json({
+                status: 400,
+                message: 'User with this email already exists.',
+            });
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Check if candidate with email already exists
-        const existingCandidate = await Candidate.findOne({ email });
-        if (existingCandidate) {
-            return res.status(400).json({ message: 'Candidate with this email already exists.' });
-        }
-
-
-        // Create new candidate
+        // Create new user
         const user = new User({
             full_name,
             email,
@@ -28,13 +32,18 @@ export const register = async (req, res) => {
 
         await user.save();
 
-        res.status(201).json({
-            message: 'Candidate registered successfully',
+        return res.status(201).json({
+            status: 201,
+            message: 'User registered successfully',
             user,
         });
     } catch (error) {
         console.error('Registration error:', error);
-        res.status(500).json({ message: 'Server Error', error: error.message });
+        return res.status(500).json({
+            status: 500,
+            message: 'Internal Server Error',
+            error: error.message,
+        });
     }
 };
 
