@@ -25,18 +25,33 @@ const LeaveSchema = new mongoose.Schema({
     //     type: String,
     //     required: true
     // },
+    leave_reason: {
+        type: String,
+        // required: true
+
+    },
+    document: {
+        type: String,
+        // required: true
+
+    },
+    leave_date: {
+        type: String,
+        // required: true
+
+    },
     leave_status: {
         type: String,
-        required: true,
-        enum: ['approve', "reject"],
+        // required: true,
+        enum: ['pending', 'approve', "reject"],
         default: 'pending',
 
     },
-    employee: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Attendance',
-        required: true
-    },
+    // employee: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Attendance',
+    //     required: true
+    // },
     candidate: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidate',

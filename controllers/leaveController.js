@@ -1,3 +1,4 @@
+import Leave from "../modals/Leave.js";
 import Candidate from "../modals/Candidate.js";
 
 export const searchCandidates = async (req, res) => {
@@ -14,6 +15,29 @@ export const searchCandidates = async (req, res) => {
             status: 200,
             message: "Candidates fetched successfully.",
             candidates,
+        });
+    } catch (error) {
+        console.error("Search error:", error);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};
+
+export const getLeaveUsers = async (req, res) => {
+    try {
+        // const { query } = req.params;
+
+        // console.log(query, ' asda smmmmm');
+        // Case-insensitive partial match on full_name
+        const leaveAppliedUsers = await Leave.find().populate('candidate');
+        console.log(leaveAppliedUsers, 'mmmmm');
+        res.status(200).json({
+            status: 200,
+            message: "Candidates fetched successfully.",
+            leaveAppliedUsers,
         });
     } catch (error) {
         console.error("Search error:", error);
@@ -84,21 +108,39 @@ export const addNewLeave = async (req, res) => {
 };
 
 
-export const updateLeaveStatus = async (req, res) => {
+
+export const addLeave = async (req, res) => {
     try {
-        const { query } = req.query;
+        const { leave_reason, leave_date, document, id } = req.body;
 
-        console.log(query, ' asda smmmmm');
-        // Case-insensitive partial match on full_name
+        // Validation (basic)
+        if (!leave_reason || !leave_date || !id || !document) {
+            return res.status(400).json({
+                status: 400,
+                message: "Missing required fields.",
+            });
+        }
 
-        console.log(candidates, 'mmmmm');
-        res.status(200).json({
-            status: 200,
-            message: "Candidates fetched successfully.",
-            candidates,
+        const leaveAppliedUsers = await Leave.find().populate('candidate');
+        console.log(leaveAppliedUsers, 'mmmmm');
+
+        const newLeave = new Leave({
+            leave_reason,
+            leave_date,
+            document,
+            candidate: id,
+            // employee: employeeId || null, // Optional
+        });
+
+        const savedLeave = await newLeave.save();
+        console.log(savedLeave, 'pppppp');
+        res.status(201).json({
+            status: 201,
+            message: "Leave request submitted successfully.",
+            data: savedLeave,
         });
     } catch (error) {
-        console.error("Search error:", error);
+        console.error("Error adding leave:", error);
         res.status(500).json({
             status: 500,
             message: "Internal Server Error",

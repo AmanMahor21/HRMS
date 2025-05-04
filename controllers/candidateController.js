@@ -144,7 +144,7 @@ export const updateUserStatus = async (req, res) => {
 export const editUser = async (req, res) => {
     try {
         // const { id } = req.params;
-        const { id, full_name, email, phone_number, department, position, date_of_joining, experience } = req.body;
+        const { id, full_name, email, phone_number, department, status, position, date_of_joining, experience } = req.body;
         // const { id } = req.params;,
 
         console.log(id, 'xxx');
@@ -153,6 +153,7 @@ export const editUser = async (req, res) => {
             ...(email && { email }),
             ...(phone_number && { phone_number }),
             ...(department && { department }),
+            ...(status && { status }),
             ...(experience && { experience }),
             ...(position && { position }),
             ...(date_of_joining && { date_of_joining }),

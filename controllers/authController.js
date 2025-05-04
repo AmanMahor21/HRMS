@@ -77,7 +77,7 @@ export const login = async (req, res) => {
         const token = jwt.sign(
             { userId: user._id },
             'test_secret_key', // Hardcoded secret for testing
-            { expiresIn: '1d' }
+            { expiresIn: '2h' }
         );
 
         // Send success response
