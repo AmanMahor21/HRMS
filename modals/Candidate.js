@@ -44,6 +44,16 @@ const CandidateSchema = new mongoose.Schema({
         required: true
 
     },
+    leave_reason: {
+        type: String,
+        required: true
+
+    },
+    leave_date: {
+        type: String,
+        required: true
+
+    },
     status: {
         type: String,
         required: true,

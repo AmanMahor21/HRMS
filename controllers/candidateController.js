@@ -144,8 +144,8 @@ export const updateUserStatus = async (req, res) => {
 export const editUser = async (req, res) => {
     try {
         // const { id } = req.params;
-        const { full_name, email, phone_number, department, position, date_of_joining } = req.body;
-        const { id } = req.params;
+        const { id, full_name, email, phone_number, department, position, date_of_joining } = req.body;
+        // const { id } = req.params;
 
         console.log(id, 'xxx');
         const updatedFields = {
@@ -157,8 +157,8 @@ export const editUser = async (req, res) => {
             ...(date_of_joining && { date_of_joining }),
         };
 
-        const updatedUser = await Candidate.findByIdAndUpdate(
-            id,
+        const updatedUser = await Candidate.findOneAndUpdate(
+            { _id: id },
             updatedFields,
             { new: true }
         );
