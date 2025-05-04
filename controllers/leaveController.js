@@ -24,3 +24,29 @@ export const searchCandidates = async (req, res) => {
         });
     }
 };
+
+
+export const addNewLeave = async (req, res) => {
+    try {
+        const { query } = req.query;
+
+        console.log(query, ' asda smmmmm');
+        // Case-insensitive partial match on full_name
+        const candidates = await Candidate.findOne({
+
+        });
+        console.log(candidates, 'mmmmm');
+        res.status(200).json({
+            status: 200,
+            message: "Candidates fetched successfully.",
+            candidates,
+        });
+    } catch (error) {
+        console.error("Search error:", error);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};
