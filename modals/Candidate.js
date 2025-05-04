@@ -30,7 +30,7 @@ const CandidateSchema = new mongoose.Schema({
     },
     date_of_joining: {
         type: Date,
-        required: true
+        // required: true
 
     },
     experience: {

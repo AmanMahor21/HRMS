@@ -2,25 +2,22 @@ import Candidate from "../modals/Candidate.js";
 
 export const addNewCandidate = async (req, res) => {
     try {
-        // const {
-        //     full_name,
-        //     email,
-        //     phone_number,
-        //     position,
-        //     experience,
-        //     resume,
-        //     status
-        // } = req.body;
+        const { email } = req.body;
 
-        const alreadyExist = await Candidate.findOne({ email: req.body.email });
+        // Check if the candidate already exists by email
+        const alreadyExist = await Candidate.findOne({ email });
         if (alreadyExist) {
             return res.status(400).json({
                 status: 400,
-                message: "Candidate already exist",
+                message: "Candidate already exists.",
             });
         }
+
         const newCandidate = new Candidate(req.body);
 
+        await newCandidate.save();
+
+        newCandidate.date_of_joining = newCandidate.createdAt;
         await newCandidate.save();
 
         return res.status(201).json({
