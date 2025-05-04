@@ -3,7 +3,7 @@
 import Candidate from '../modals/Candidate.js';
 import User from '../modals/User.js';
 import bcrypt from 'bcrypt';
-
+import jwt from 'jsonwebtoken';
 export const register = async (req, res) => {
     try {
         const { full_name, email, password } = req.body;
@@ -48,27 +48,57 @@ export const register = async (req, res) => {
 };
 
 
+// import bcrypt from 'bcryptjs';
+// import jwt from 'jsonwebtoken';
+
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
+        // Check if user exists
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ message: 'Email not found, please register' });
+            return res.status(400).json({
+                status: 400,
+                message: 'Email not found. Please register.',
+            });
         }
 
+        // Check password match
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Password does not match' });
+            return res.status(400).json({
+                status: 400,
+                message: 'Incorrect password. Please try again.',
+            });
         }
 
-        res.status(200).json({
+        // Generate JWT token
+        const token = jwt.sign(
+            { userId: user._id },
+            'test_secret_key', // Hardcoded secret for testing
+            { expiresIn: '1d' }
+        );
+
+        // Send success response
+        return res.status(200).json({
+            status: 200,
             message: 'Login successful',
-            user,
+            token,
+            user: {
+                _id: user._id,
+                full_name: user.full_name,
+                email: user.email,
+            },
         });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ message: 'Server Error', error: error.message });
+        return res.status(500).json({
+            status: 500,
+            message: 'Internal Server Error',
+            error: error.message,
+        });
     }
 };
+
 
