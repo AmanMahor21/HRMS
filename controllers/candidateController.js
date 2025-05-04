@@ -45,7 +45,7 @@ export const getAllUser = async (req, res) => {
 
         // Handle different types
         if (type === "candidates") {
-            query = {}; // Get all candidates
+            query = { status: { $ne: "selected" } }; // Exclude selected candidates
         } else if (type === "employees") {
             query = { status: "selected" }; // Get selected employees
         } else if (type === "leave") {
@@ -158,6 +158,7 @@ export const editUser = async (req, res) => {
             ...(position && { position }),
             ...(date_of_joining && { date_of_joining }),
         };
+        console.log(updatedFields, "updatedFields ");
 
         const updatedUser = await Candidate.findOneAndUpdate(
             { _id: id },
