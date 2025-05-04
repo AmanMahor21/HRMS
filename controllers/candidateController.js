@@ -144,8 +144,8 @@ export const updateUserStatus = async (req, res) => {
 export const editUser = async (req, res) => {
     try {
         // const { id } = req.params;
-        const { id, full_name, email, phone_number, department, position, date_of_joining } = req.body;
-        // const { id } = req.params;
+        const { id, full_name, email, phone_number, department, position, date_of_joining, experience } = req.body;
+        // const { id } = req.params;,
 
         console.log(id, 'xxx');
         const updatedFields = {
