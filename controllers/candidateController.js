@@ -153,6 +153,7 @@ export const editUser = async (req, res) => {
             ...(email && { email }),
             ...(phone_number && { phone_number }),
             ...(department && { department }),
+            ...(experience && { experience }),
             ...(position && { position }),
             ...(date_of_joining && { date_of_joining }),
         };
