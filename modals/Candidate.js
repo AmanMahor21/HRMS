@@ -34,9 +34,9 @@ const CandidateSchema = new mongoose.Schema({
 
     },
     experience: {
-        type: Number,
+        type: String,
         required: true,
-        min: [0, 'Experience must be a non-negative number'],
+        // min: [0, 'Experience must be a non-negative number'],
 
     },
     resume: {
