@@ -61,6 +61,12 @@ const CandidateSchema = new mongoose.Schema({
 
 
     },
+    leave_status: {
+        type: String,
+        enum: ['pending', 'approve', "reject"],
+        default: 'pending',
+
+    },
     status: {
         type: String,
         required: true,
