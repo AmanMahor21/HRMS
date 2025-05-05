@@ -1,5 +1,4 @@
 import { FiUpload } from "react-icons/fi";
-import "./ResumeUpload.css";
 
 const ResumeUpload = ({ name, value, onChange, error }: any) => {
   return (
