@@ -1,0 +1,58 @@
+/* Existing styles */
+.table-container {
+  max-height: 100vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 0px 20px;
+}
+
+/* NEW: for horizontal responsiveness */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Allow table to expand horizontally */
+.custom-table {
+  width: 100%;
+  min-width: 600px;
+  /* Set a reasonable min width */
+  border-collapse: collapse;
+  font-family: sans-serif;
+}
+
+/* Optional: Improve usability on mobile */
+@media (max-width: 768px) {
+  .custom-table {
+    width: max-content;
+  }
+}
+
+
+
+
+.custom-table th,
+.custom-table td {
+  padding: 12px 16px;
+  text-align: left;
+  background-color: white;
+}
+
+.custom-table thead th {
+  background-color: #6a0dad;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.custom-table thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.custom-table thead th:last-child {
+  border-top-right-radius: 10px;
+}

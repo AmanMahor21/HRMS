@@ -1,0 +1,157 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-modal {
+  width: 600px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.modal-header {
+  background-color: #6a0dad;
+  padding: 2px 26px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  width: 24px;
+}
+
+.modal-header::before {
+  content: "";
+  width: 24px;
+}
+
+.modal-body {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+
+.modal-body-delete {
+  padding: 20px;
+}
+
+.input-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 200px 16px;
+  background: #f9f9f9;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #ccc;
+  color: white;
+}
+
+.save-btn {
+  background: #6a0dad;
+  color: white;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #6a0dad;
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-family: sans-serif;
+  transition: border 0.3s;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
+
+
+
+.resume-upload-label {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid #ccc;
+  border-radius: 8px; */
+  padding: 10px 14px;
+  cursor: pointer;
+  background-color: #fff;
+  font-family: sans-serif;
+}
+
+.resume-text {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
+}
+
+.upload-icon {
+  color: #6a0dad;
+  font-size: 18px;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

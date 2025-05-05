@@ -1,0 +1,121 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.logo-wrapper-auth {
+  color: purple;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0px;
+  display: flex;
+  gap: 9px;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.login-container {
+  display: flex;
+  width: 80%;
+  max-width: 90%;
+  height: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.left-side {
+  flex: 1;
+  background-color: #350066;
+  background-size: cover;
+  background-position: center;
+}
+
+.right-side {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.auth-form {
+  width: 70%;
+}
+
+.right-side h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.input-container {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: purple;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.login-header {
+  font-size: 24px;
+}
+
+.btn {
+  padding: 10px 30px; /* Makes the button wide enough */
+  border-radius: 999px; /* Fully rounded sides */
+  background-color: #350066;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.gray-text {
+  color: gray;
+  
+}
+
+.purple-link {
+  color: #6a0dad; /* Your desired purple color */
+  text-decoration: none; /* Optional: remove underline */
+}
+
+.purple-link:hover {
+  text-decoration: underline; /* Optional: underline on hover */
+}
