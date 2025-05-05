@@ -182,7 +182,7 @@ export const updateUserStatus = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         // const { id } = req.params;
-        const { id, full_name, email, phone_number, department, status, position, date_of_joining, experience } = req.body;
+        const { id, full_name, email, phone_number, department, status, position, date_of_joining, experience, resume, leave_reason, leave_date, leave_doc, leave_status, attendance_status, attendance_task } = req.body;
         // const { id } = req.params;,
 
         console.log(id, 'xxx');
@@ -195,6 +195,13 @@ export const updateUser = async (req, res) => {
             ...(experience && { experience }),
             ...(position && { position }),
             ...(date_of_joining && { date_of_joining }),
+            ...(resume && { resume }),
+            ...(leave_reason && { leave_reason }),
+            ...(leave_date && { leave_date }),
+            ...(leave_doc && { leave_doc }),
+            ...(leave_status && { leave_status }),
+            ...(attendance_status && { attendance_status }),
+            ...(attendance_task && { attendance_task })
         };
         console.log(updatedFields, "updatedFields ");
 
