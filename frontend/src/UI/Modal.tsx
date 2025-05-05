@@ -10,7 +10,6 @@ import { showToast } from "../utils/toast";
 import Button from "./Button";
 import InputField from "./InputField";
 import SearchField from "./SearchField";
-import ResumeUpload from "./ResumeUpload";
 
 const FormModal = () => {
   const { activeItem, modalState, setModalState, setListings, setLoader } =
@@ -149,20 +148,20 @@ const FormModal = () => {
                 />
               );
             }
-            if ( field?.name === "resume") {
-              return (
-                <ResumeUpload
-                  key={field.label}
-                  label={field.label}
-                  name={field.name}
-                  value={formik.values[field.name]}
-                  onChange={(e) =>
-                    formik.setFieldValue(field.name, e.currentTarget.files[0])
-                  }
-                  error={formik.touched[field.name] && formik.errors[field.name]}
-                />
-              );
-            }
+            // if ( field?.name === "resume") {
+            //   return (
+            //     <ResumeUpload
+            //       key={field.label}
+            //       label={field.label}
+            //       name={field.name}
+            //       value={formik.values[field.name]}
+            //       onChange={(e) =>
+            //         formik.setFieldValue(field.name, e.currentTarget.files[0])
+            //       }
+            //       error={formik.touched[field.name] && formik.errors[field.name]}
+            //     />
+            //   );
+            // }
             return (
               <InputField
                 key={field.label}

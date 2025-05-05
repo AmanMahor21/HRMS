@@ -28,8 +28,6 @@ const handleDropdownChange = (value: string, key: string) => {
   if (key === "attendance") setAttendanceStatus(value);
   if (key === "leave") setLeaveStatus(value);
 
-  console.log(value,'saaa');
-  console.log(key,'asd saaa');
   const updatedFilters = {
     status: key === "status" ? value : "",
     position: key === "position" ? value : "",

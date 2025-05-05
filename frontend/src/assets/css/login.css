@@ -46,6 +46,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .auth-form {
   width: 70%;
 }
@@ -88,17 +89,19 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+/* button:hover {
   background-color: #0056b3;
-}
+} */
 
 .login-header {
   font-size: 24px;
 }
 
 .btn {
-  padding: 10px 30px; /* Makes the button wide enough */
-  border-radius: 999px; /* Fully rounded sides */
+  padding: 10px 30px;
+  /* Makes the button wide enough */
+  border-radius: 999px;
+  /* Fully rounded sides */
   background-color: #350066;
   color: white;
   border: none;
@@ -108,14 +111,17 @@ button:hover {
 
 .gray-text {
   color: gray;
-  
+
 }
 
 .purple-link {
-  color: #6a0dad; /* Your desired purple color */
-  text-decoration: none; /* Optional: remove underline */
+  color: #6a0dad;
+  /* Your desired purple color */
+  text-decoration: none;
+  /* Optional: remove underline */
 }
 
 .purple-link:hover {
-  text-decoration: underline; /* Optional: underline on hover */
+  text-decoration: underline;
+  /* Optional: underline on hover */
 }
