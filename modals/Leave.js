@@ -47,11 +47,11 @@ const LeaveSchema = new mongoose.Schema({
         default: 'pending',
 
     },
-    // employee: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Attendance',
-    //     required: true
-    // },
+    Attendance: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Attendance',
+        required: true
+    },
     candidate: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidate',

@@ -54,13 +54,33 @@ const CandidateSchema = new mongoose.Schema({
         // required: true
 
     },
+    leave_doc: {
+        type: String,
+        // required: true
+        default: 'new',
+
+
+    },
     status: {
         type: String,
         required: true,
         enum: ['new', 'scheduled', 'ongoing', 'selected', 'rejected'],
         default: 'new',
 
+    }, attendance_status: {
+        type: String,
+        required: true,
+        enum: ['pending', 'present', 'absent'],
+        default: 'pending',
+
     },
+    attendance_task: {
+        type: String,
+        required: true,
+        default: 'Testing...',
+
+    },
+
 
 },
     {

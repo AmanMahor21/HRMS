@@ -3,19 +3,34 @@ import Candidate from "../modals/Candidate.js";
 
 export const searchCandidates = async (req, res) => {
     try {
-        const { query } = req.query;
+        const { query, type } = req.query;
 
-        console.log(query, ' asda smmmmm');
-        // Case-insensitive partial match on full_name
-        const candidates = await Candidate.find({
-            full_name: { $regex: `^${query}`, $options: "i" },
-        });
-        console.log(candidates, 'mmmmm');
+        // Ensure the query parameter is provided
+        if (!query) {
+            return res.status(400).json({
+                status: 400,
+                message: "Search query is required.",
+            });
+        }
+
+        let filter = {
+            full_name: { $regex: `^${query}`, $options: "i" }, // Case-insensitive search
+        };
+
+        // If type is 'leave', filter for selected candidates
+        if (type === "leave") {
+            filter.status = "selected";
+        }
+
+        // Perform the search with the filter
+        const candidates = await Candidate.find(filter);
+
         res.status(200).json({
             status: 200,
             message: "Candidates fetched successfully.",
             candidates,
         });
+
     } catch (error) {
         console.error("Search error:", error);
         res.status(500).json({
@@ -25,19 +40,23 @@ export const searchCandidates = async (req, res) => {
         });
     }
 };
+
 
 export const getLeaveUsers = async (req, res) => {
     try {
-        // const { query } = req.params;
+        const leaveAppliedUsers = await Leave.find()
+            .populate({
+                path: 'candidate',
+                // match: { status: 'selected' }
+            });
 
-        // console.log(query, ' asda smmmmm');
-        // Case-insensitive partial match on full_name
-        const leaveAppliedUsers = await Leave.find().populate('candidate');
-        console.log(leaveAppliedUsers, 'mmmmm');
+        // Remove leave entries where candidate didn't match (i.e., not selected)
+        const filteredUsers = leaveAppliedUsers.filter(leave => leave.candidate);
+
         res.status(200).json({
             status: 200,
-            message: "Candidates fetched successfully.",
-            leaveAppliedUsers,
+            message: "Leave applied users with selected candidates fetched successfully.",
+            users: filteredUsers,
         });
     } catch (error) {
         console.error("Search error:", error);
@@ -48,6 +67,7 @@ export const getLeaveUsers = async (req, res) => {
         });
     }
 };
+
 
 
 export const addNewLeave = async (req, res) => {
@@ -111,13 +131,21 @@ export const addNewLeave = async (req, res) => {
 
 export const addLeave = async (req, res) => {
     try {
-        const { leave_reason, leave_date, document, id } = req.body;
+        const { leave_reason, leave_date, document, leave_status, id } = req.body;
 
         // Validation (basic)
         if (!leave_reason || !leave_date || !id || !document) {
             return res.status(400).json({
                 status: 400,
                 message: "Missing required fields.",
+            });
+        }
+        const alreadyApplied = await Leave.findOne({ candidate: id });
+
+        if (alreadyApplied) {
+            return res.status(409).json({
+                status: 409,
+                message: "Leave has already been applied by this candidate.",
             });
         }
 
@@ -128,6 +156,7 @@ export const addLeave = async (req, res) => {
             leave_reason,
             leave_date,
             document,
+            leave_status,
             candidate: id,
             // employee: employeeId || null, // Optional
         });
