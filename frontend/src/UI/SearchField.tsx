@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { useAppContext } from "../context/AppContext";
 import { getSearch } from "../core/_request";
 import { mapCandidatesData } from "../utils/_function";
 
@@ -16,7 +15,6 @@ interface SearchFieldProps {
 }
 
 const SearchField = ({ values = "", handleUserClick }: SearchFieldProps) => {
-  const { setListings } = useAppContext();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Candidate[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);

@@ -13,7 +13,7 @@ const Header = () => {
   const [status, setStatus] = useState("");
   const [position, setPosition] = useState("");
   const [attendanceStatus, setAttendanceStatus] = useState("");
-  const [leaveStatus, setLeaveStatus] = useState("");
+  const [_leaveStatus, setLeaveStatus] = useState("");
   const [tempList, setTempList] = useState([]);
 
 useEffect(() => {
