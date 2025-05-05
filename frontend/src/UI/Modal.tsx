@@ -5,7 +5,7 @@ import "../assets/css/modal.css";
 import { useAppContext } from "../context/AppContext";
 import { addCandidate, getUser, updateUser } from "../core/_request";
 import { MODAL_FIELDS } from "../core/const";
-import { responseHandler } from "../utils/_function";
+import { generateValidationSchema, responseHandler } from "../utils/_function";
 import { showToast } from "../utils/toast";
 import Button from "./Button";
 import InputField from "./InputField";
@@ -53,9 +53,9 @@ const FormModal = () => {
   const formik = useFormik({
     initialValues: userData || {},
     enableReinitialize: true,
-    // validationSchema: generateValidationSchema(activeItem),
+    validationSchema: generateValidationSchema(activeItem),
     onSubmit: async (values) => {
-      // setLoader(true);
+      setLoader(true);
       console.log(activeItem);
       console.log(modalState);
       if (activeItem === "Candidates" && modalState?.status === true) {
