@@ -89,10 +89,19 @@ const Login = () => {
         {/* SUBMIT BUTTON */}
         <Button
           type="button"
-          style={{ margin: "15px 0px" }}
+          style={{ margin: "15px 0px",  backgroundColor:
+            formik.values.email && formik.values.password
+              ? "#350066"
+              : "rgba(72, 88, 98, 0.4)",
+          cursor:
+            formik.values.email && formik.values.password
+              ? "pointer"
+              : "not-allowed",}}
           onClick={() => formik.handleSubmit()}
+          disabled={!formik.values.email || !formik.values.password}
+
         >
-          Submit
+          Login
         </Button>
 
         <TextLink

@@ -8,7 +8,7 @@
 }
 
 .logo-wrapper-auth {
-  color: purple;
+  color: #350066;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
 }
 
 .auth-logo {
-  color: purple;
+  color: #350066;
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -28,7 +28,7 @@
 .auth-logo-icon {
   width: 42px;
   height: 42px;
-  border: 4px solid purple;
+  border: 4px solid #350066;
   border-radius: 5px;
 }
 
@@ -108,9 +108,9 @@
 }
 
 button {
-  width: 100%;
+  width: fit-content;
   padding: 10px;
-  background-color: purple;
+  background-color: #350066;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -146,7 +146,7 @@ button {
 }
 
 .purple-link {
-  color: #6a0dad;
+  color: #350066;
   text-decoration: none;
 }
 

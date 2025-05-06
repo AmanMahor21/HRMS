@@ -125,7 +125,7 @@ const Signup = () => {
         style={{ margin: "15px 0px" }}
         onClick={() => formik.handleSubmit()}
       >
-        Submit
+        Register
       </Button>
 
       <TextLink
