@@ -51,12 +51,13 @@ const Signup = () => {
   return (
     <AuthWrapper>
       {/* HEADER */}
-      <Header2 className="login-header">Welcome to the dashboard</Header2>
+      <Header2 className="login-header">Welcome to Dashboard</Header2>
 
       {/* INPUT FIELDS */}
       <InputField
         label="Full name"
         type="text"
+        className="auth-input-field"
         id="Full name"
         placeholder="Full name"
         value={formik.values.fullName}
@@ -72,6 +73,7 @@ const Signup = () => {
       <InputField
         label="Email Address"
         type="text"
+        className="auth-input-field"
         id="Email Address"
         placeholder="Email Address"
         value={formik.values.email}
@@ -87,6 +89,7 @@ const Signup = () => {
       <InputField
         label="Password"
         type="password"
+        className="auth-input-field"
         id="Password"
         placeholder="Password"
         value={formik.values.password}
@@ -102,6 +105,7 @@ const Signup = () => {
       <InputField
         label="Confirm Password"
         type="password"
+        className="auth-input-field"
         id="Confirm Password"
         placeholder="Confirm Password"
         value={formik.values.confirmPassword}

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import "../assets/css/login.css";
 
 interface AuthWrapperProps {
-  children: ReactNode; // children prop to pass form content (like fields and buttons)
+  children: ReactNode;
 }
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
@@ -15,11 +15,13 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
         />
       </div> */}
       <div className="logo-wrapper-auth">
-        <div className="logo-icon"></div>
-        <div className="logo">Logo</div>
+        <div className="auth-logo-icon"></div>
+        <div className="auth-logo">Logo</div>
       </div>
       <div className="login-container">
-        <div className="left-side"></div>
+        <div className="left-side">
+          <img src="/Rectangle.svg" alt=""/>
+        </div>
         <div className="right-side">
           <form className="auth-form">{children}</form>
         </div>

@@ -4,6 +4,7 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   onChange?: any;
   error?: any;
+  className:string
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -11,10 +12,11 @@ const InputField: React.FC<InputFieldProps> = ({
   id,
   onChange,
   error,
+  className,
   ...rest
 }) => {
   return (
-    <div className="input-container">
+    <div className={className ?? "input-container"}>
       {label && id && <label htmlFor={id}>{label}</label>}
       <input
         id={id}

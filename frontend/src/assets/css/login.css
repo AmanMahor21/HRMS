@@ -3,16 +3,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
+  gap: 32px;
 }
 
 .logo-wrapper-auth {
   color: purple;
   font-size: 20px;
+  display: flex;
+  align-items: center;
   font-weight: bold;
   margin: 20px 0px;
   display: flex;
   gap: 9px;
+}
+
+.auth-logo {
+  color: purple;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.auth-logo-icon {
+  width: 42px;
+  height: 42px;
+  border: 4px solid purple;
+  border-radius: 5px;
 }
 
 .logo img {
@@ -24,8 +41,8 @@
   display: flex;
   width: 80%;
   max-width: 90%;
-  height: 500px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
   overflow: hidden;
 }
@@ -35,6 +52,19 @@
   background-color: #350066;
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-side img {
+  width: 70%;
+  height: auto;
+  /* Maintains aspect ratio */
+  max-height: 80%;
+  /* Prevents image from stretching too tall */
+  object-fit: contain;
+  /* Ensures full image is visible within container */
 }
 
 .right-side {
@@ -57,19 +87,19 @@
   color: #333;
 }
 
-.input-container {
+.auth-input-field {
   width: 100%;
   margin-bottom: 15px;
 }
 
-.input-container label {
+.auth-input-field label {
   display: block;
   font-size: 14px;
   color: #555;
   margin-bottom: 5px;
 }
 
-.input-container input {
+.auth-input-field input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -95,13 +125,14 @@ button {
 
 .login-header {
   font-size: 24px;
+  margin-bottom: 12px;
+  color: rgba(0, 0, 0, 0.865);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .btn {
   padding: 10px 30px;
-  /* Makes the button wide enough */
   border-radius: 999px;
-  /* Fully rounded sides */
   background-color: #350066;
   color: white;
   border: none;
@@ -116,9 +147,7 @@ button {
 
 .purple-link {
   color: #6a0dad;
-  /* Your desired purple color */
   text-decoration: none;
-  /* Optional: remove underline */
 }
 
 .purple-link:hover {

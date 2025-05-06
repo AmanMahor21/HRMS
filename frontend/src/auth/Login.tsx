@@ -54,6 +54,7 @@ const Login = () => {
         <InputField
           label="Email Address"
           type="text"
+          className="auth-input-field"
           id="email"
           placeholder="Email Address"
           value={formik.values.email}
@@ -69,6 +70,7 @@ const Login = () => {
         <InputField
           label="Password"
           type="password"
+          className="auth-input-field"
           id="password"
           placeholder="Password"
           value={formik.values.password}
