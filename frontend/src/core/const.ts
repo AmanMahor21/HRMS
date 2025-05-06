@@ -230,6 +230,10 @@ export const MODAL_FIELDS = {
     },
     { label: "Reason", placeholder: "Reason", name: "reason" },
   ],
+  Attendance: [
+    { label: "Task", placeholder: "Task", name: "attendance_task" },
+
+  ],
 };
 
 export const STATUS_OPTIONS = {

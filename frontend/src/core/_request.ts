@@ -100,6 +100,33 @@ export const updateUser = async (data: any) => {
     return error?.response?.data;
   }
 };
+export const updateUserTask = async (data: any) => {
+  try {
+    const payload = {
+      ...data,
+      ...(data?._id && {
+        id: data?._id,
+      }),
+      ...((data?.fullName || data?.name || data?.employeeName) && {
+        full_name: data?.fullName || data?.name || data?.employeeName,
+      }),
+      ...((data?.phoneNumber || data?.phone) && {
+        phone_number: data?.phoneNumber || data?.phone,
+      }),
+      ...(data?.department && {
+        department: data?.department,
+      }),
+    };
+    console.log(payload);
+    const response = await axiosInstance.patch(
+      "/api/candidate/edit-user/",
+      payload
+    );
+    return response.data;
+  } catch (error) {
+    return error?.response?.data;
+  }
+};
 
 // DELETE USER
 export const deleteUser = async (data: string) => {

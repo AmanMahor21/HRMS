@@ -15,11 +15,6 @@ const FormModal = () => {
   const { activeItem, modalState, setModalState, setListings, setLoader } =
     useAppContext();
 
-  const shouldShowModal =
-    modalState?.status === "edit" || modalState?.status === true;
-
-  if (!shouldShowModal) return null;
-
   const fields = MODAL_FIELDS[activeItem] || [];
   const initialData = fields?.reduce((acc: any, field: any) => {
     acc[field.name] = "";
@@ -39,6 +34,8 @@ const FormModal = () => {
           setUserData({
             ...res?.users,
           });
+        } else {
+
         }
       }
     };
@@ -92,7 +89,20 @@ const FormModal = () => {
           setLoader
         );
       }
+      else if (activeItem === "Attendance" && modalState?.status === "edit") {
+        const response = await updateUser({
+          ...values,
+        });
+        responseHandler(
+          response,
+          setModalState,
+          setListings,
+          activeItem,
+          setLoader
+        );
+      }
       else if (modalState?.status === "edit") {
+        console.log(values, 'ateeeeeeeeeeeeeeee');
         const response = await updateUser({
           ...values,
           leave_data: values?.leaveDate,
@@ -122,6 +132,11 @@ const FormModal = () => {
     }
   };
 
+  const shouldShowModal =
+    modalState?.status === "edit" || modalState?.status === true;
+
+  if (!shouldShowModal) return null;
+
   return (
     <div className="modal-overlay">
       <div className="form-modal">
@@ -135,11 +150,14 @@ const FormModal = () => {
                   ? "Edit Employee Details"
                   : activeItem === "Leave"
                     ? "Add New Leave"
-                    : ""}
+                    : activeItem === "Attendance" ? "Edit Attendance" : ""}
           </h3>
           <button
             className="close-btn"
-            onClick={() => setModalState({ status: false, data: undefined })}
+            onClick={() => {
+              setModalState({ status: false, data: undefined });
+              formik.resetForm();
+            }}
           >
             ×
           </button>
