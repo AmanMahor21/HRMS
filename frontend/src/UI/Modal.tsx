@@ -179,6 +179,7 @@ const FormModal = () => {
             return (
               <InputField
                 key={field.label}
+                className=""
                 label={field.label}
                 type={field.type || "text"}
                 placeholder={field.placeholder}
