@@ -48,7 +48,7 @@ const handleDropdownChange = (value: string, key: string) => {
           <FaBell className="icon" />
           <div className="profile-dropdown">
             <img
-              src="https://unsplash.com/photos/shallow-focus-photography-of-woman-outdoor-during-day-rDEOVtE7vOs"
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="profile"
               className="profile-img"
             />

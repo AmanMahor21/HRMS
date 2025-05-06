@@ -80,8 +80,8 @@ export const updateUser = async (data: any) => {
       ...(data?._id && {
         id: data?._id,
       }),
-      ...((data?.fullName || data?.name) && {
-        full_name: data?.fullName || data?.name,
+      ...((data?.fullName || data?.name || data?.employeeName) && {
+        full_name: data?.fullName || data?.name || data?.employeeName,
       }),
       ...((data?.phoneNumber || data?.phone) && {
         phone_number: data?.phoneNumber || data?.phone,

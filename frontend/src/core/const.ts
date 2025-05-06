@@ -175,14 +175,14 @@ export const tableConfigs: Record<
 // MODAL FIELDS
 export const MODAL_FIELDS = {
   Candidates: [
-    { label: "Full Name", placeholder: "Full name", name: "fullName" },
+    { label: "Full Name", placeholder: "Full name", name: "full_name" },
     {
       label: "Email",
       type: "email",
       placeholder: "Enter email",
       name: "email",
     },
-    { label: "Phone Number", placeholder: "Phone Number", name: "phoneNumber" },
+    { label: "Phone Number", placeholder: "Phone Number", name: "phone_number" },
     { label: "Position", placeholder: "Position", name: "position" },
     { label: "Experience", placeholder: "Experience", name: "experience" },
     { label: "Resume", placeholder: "resume", name: "resume" },
@@ -191,22 +191,26 @@ export const MODAL_FIELDS = {
     {
       label: "Employee Name",
       placeholder: "Employee name",
-      name: "employeeName",
+      name: "full_name",
+      // name: "employeeName",
     },
     {
       label: "Email Address",
       type: "email",
       placeholder: "Email address",
-      name: "emailAddress",
+      name: "email",
+      // name: "emailAddress",
     },
-    { label: "Phone Number", placeholder: "Phone number", name: "phoneNumber" },
+    { label: "Phone Number", placeholder: "Phone number", name: "phone_number" },
+    // { label: "Phone Number", placeholder: "Phone number", name: "phoneNumber" },
     { label: "Position", placeholder: "Position", name: "position" },
     { label: "Department", placeholder: "Department", name: "department" },
     {
       label: "Date of Joining",
       type: "date",
       placeholder: "Select joining date",
-      name: "dateOfJoining",
+      name: "date_of_joining",
+      // name: "dateOfJoining",
     },
   ],
   Leave: [
@@ -216,13 +220,13 @@ export const MODAL_FIELDS = {
       label: "Leave Date",
       type: "date",
       placeholder: "Leave Date",
-      name: "leaveDate",
+      name: "leave_date",
     },
     {
       label: "Document",
       type: "file",
       placeholder: "Document",
-      name: "document",
+      name: "leave_doc",
     },
     { label: "Reason", placeholder: "Reason", name: "reason" },
   ],
