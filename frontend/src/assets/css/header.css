@@ -62,11 +62,6 @@
   border-radius: 6px;
 }
 
-/* .dropdown-selected {
-  color: #ea0e0eef;
-  /* font-size: 22px; */
-/* } */
-
 .search-add {
   display: flex;
   align-items: center;
@@ -81,11 +76,10 @@
 
 .add-btn {
   background-color: #6a0dad;
+  /* width: 25%; */
   padding: 10px 30px;
-  /* Makes the button wide enough */
+  margin-block: 12px;
   border-radius: 999px;
-  /* Fully rounded sides */
-  background-color: #350066;
   color: white;
   border: none;
   cursor: pointer;

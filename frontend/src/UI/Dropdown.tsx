@@ -15,7 +15,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   return (
     <select
-    className={`${className} ${value ? "dropdown-selected" : ""}`}
+    className={className}
+    // className={`${className} ${value ? "dropdown-selected" : ""}`}
+
     value={value ?? ""}
       onChange={(e) => onChange?.(e.target.value)}
     >
