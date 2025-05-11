@@ -50,8 +50,6 @@ const FormModal = () => {
     validationSchema: generateValidationSchema(activeItem),
     onSubmit: async (values) => {
       setLoader(true);
-      console.log(activeItem);
-      console.log(modalState);
       if (activeItem === "Candidates" && modalState?.status === true) {
         const response = await addCandidate({
           ...values,
@@ -75,7 +73,6 @@ const FormModal = () => {
           activeItem,
           setLoader
         );
-        console.log(response);
       }
       else if (activeItem === "Employees" && modalState?.status === "edit") {
         const response = await updateUser({
@@ -102,7 +99,6 @@ const FormModal = () => {
         );
       }
       else if (modalState?.status === "edit") {
-        console.log(values, 'ateeeeeeeeeeeeeeee');
         const response = await updateUser({
           ...values,
           leave_data: values?.leaveDate,
@@ -118,7 +114,6 @@ const FormModal = () => {
     },
   });
 
-  // console.log(formik.values);
 
   const handleUserClick = (data: any) => {
     const userData = data?.find(
@@ -126,6 +121,8 @@ const FormModal = () => {
     );
     if (userData) {
       formik.setFieldValue("search", userData?.name);
+      formik.setFieldValue("designation", userData?.department);
+      // formik.setFieldValue("reason", userData?.reason);
       formik.setFieldValue("id", userData?.id);
     } else {
       showToast("error", "Selected user attendance is not Present", 5000);

@@ -31,9 +31,9 @@ export const loginUser = async (userData: any) => {
 // ADD CANDIDATE
 export const addCandidate = async (userData: any) => {
   const payload = {
-    full_name: userData?.fullName,
+    full_name: userData?.full_name,
     email: userData?.email,
-    phone_number: userData?.phoneNumber,
+    phone_number: userData?.phone_number,
     position: userData?.position,
     resume: userData?.resume,
     experience: userData?.experience,
@@ -80,11 +80,11 @@ export const updateUser = async (data: any) => {
       ...(data?._id && {
         id: data?._id,
       }),
-      ...((data?.fullName || data?.name || data?.employeeName) && {
-        full_name: data?.fullName || data?.name || data?.employeeName,
+      ...((data?.full_name || data?.name || data?.employeeName) && {
+        full_name: data?.full_name || data?.name || data?.employeeName,
       }),
-      ...((data?.phoneNumber || data?.phone) && {
-        phone_number: data?.phoneNumber || data?.phone,
+      ...((data?.phone_number || data?.phone) && {
+        phone_number: data?.phone_number || data?.phone,
       }),
       ...(data?.department && {
         department: data?.department,
@@ -107,11 +107,11 @@ export const updateUserTask = async (data: any) => {
       ...(data?._id && {
         id: data?._id,
       }),
-      ...((data?.fullName || data?.name || data?.employeeName) && {
-        full_name: data?.fullName || data?.name || data?.employeeName,
+      ...((data?.full_name || data?.name || data?.employeeName) && {
+        full_name: data?.full_name || data?.name || data?.employeeName,
       }),
-      ...((data?.phoneNumber || data?.phone) && {
-        phone_number: data?.phoneNumber || data?.phone,
+      ...((data?.phone_number || data?.phone) && {
+        phone_number: data?.phone_number || data?.phone,
       }),
       ...(data?.department && {
         department: data?.department,

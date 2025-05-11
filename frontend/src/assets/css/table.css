@@ -1,6 +1,7 @@
 /* Existing styles */
 .table-container {
-  max-height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -55,4 +56,13 @@
 
 .custom-table thead th:last-child {
   border-top-right-radius: 10px;
+}
+
+.leave_wrapper {
+  display: flex;
+  padding-right: 14px;
+  height: 820px;
+  margin-bottom: 12px;
+  overflow-y: auto;
+
 }

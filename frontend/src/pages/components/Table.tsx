@@ -10,13 +10,29 @@ import {
   responseHandler,
 } from "../../utils/_function";
 import Tooltip from "./Tooltip";
+import { LeaveCalendar } from "../../UI/LeaveCalender";
 
 const Table = () => {
   const { activeItem, setModalState, listing, setListings, setLoader } =
     useAppContext();
 
   const [activeTooltipId, setActiveTooltipId] = useState<number | null>(null);
+  const [approvedLeave, setApprovedLeave] = useState([]);
   const tableConfig = tableConfigs[activeItem] || { columns: [], data: [] };
+  const [leaveData, setLeaveData] = useState<{ [key: string]: number }>({});
+
+
+  // Fill leave aprove list
+  useEffect(() => {
+    const status = listing.filter(ele => ele.leaveStatus == 'approve')
+    const updatedData: { [key: string]: number } = {};
+    setApprovedLeave(status)
+    approvedLeave.forEach((ele) => {
+      updatedData[ele.leaveDate] = (updatedData[ele.leaveDate] || 0) + 1;
+    });
+
+    setLeaveData(updatedData);
+  }, [approvedLeave]);
 
   // HANDLE MODAL
   const handleTooltipToggle = (id: number) => {
@@ -48,8 +64,8 @@ const Table = () => {
       ...(activeItem === "Candidates"
         ? { status: value?.toLocaleLowerCase() }
         : activeItem === "Attendance"
-        ? { attendance_status: value?.toLocaleLowerCase() }
-        : { leave_status: value?.toLocaleLowerCase() }),
+          ? { attendance_status: value?.toLocaleLowerCase() }
+          : { leave_status: value?.toLocaleLowerCase() }),
     });
     responseHandler(
       response,
@@ -61,70 +77,98 @@ const Table = () => {
   };
 
   return (
-    <div className="table-container">
-      <div className="table-scroll-wrapper">
-        <table className="custom-table">
-          <thead>
-            <tr>
-              {tableConfig?.columns.map((col) => (
-                <th key={col.accessor}>{col.header}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {listing?.map((row: any, rowIndex: number) => (
-              <tr key={rowIndex}>
-                {tableConfig?.columns.map((col: any) => (
-                  <td key={col.accessor}>
-                    {col.render ? (
-                      <>
-                        {React.createElement(col.render, {
-                          width: 15,
-                          height: 15,
-                          id: `dots-${row.id}`,
-                          className: "three-dots",
-                          onClick: () => handleTooltipToggle(row.id),
-                        })}
-                        {activeTooltipId === row.id && (
-                          <Tooltip
-                            id={row.id}
-                            onEdit={() => handleClick("edit", row)}
-                            onDelete={() => handleClick("delete", row)}
-                          />
-                        )}
-                      </>
-                    ) : (activeItem === "Candidates" &&
-                        col.accessor === "status") ||
-                      (activeItem === "Attendance" &&
-                        col.accessor === "attendanceStatus") ||
-                      (activeItem === "Leave" &&
-                        col.accessor === "leaveStatus") ? (
-                      <Dropdown
-                        options={STATUS_OPTIONS[activeItem]}
-                        value={capitalize(
-                          activeItem === "Candidates"
-                            ? row?.status
-                            : activeItem === "Attendance"
-                            ? row?.attendanceStatus
-                            : activeItem === "Leave"
-                            ? row?.leaveStatus
-                            : ""
-                        )}
-                        onChange={(value) => handleStatusChange(row.id, value)}
-                        placeholder="Status"
-                      />
-                    ) : (
-                      row[col.accessor]
-                    )}
-                  </td>
+    <div className="leave_wrapper">
+      <div className="table-container">
+        <div className="table-scroll-wrapper">
+          <table className="custom-table">
+            <thead>
+              <tr>
+                {tableConfig?.columns.map((col) => (
+                  <th key={col.accessor}>{col.header}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {listing?.map((row: any, rowIndex: number) => (
+                <tr key={rowIndex}>
+                  {tableConfig?.columns.map((col: any) => (
+                    <td key={col.accessor}>
+                      {col.render ? (
+                        <>
+                          {React.createElement(col.render, {
+                            width: 15,
+                            height: 15,
+                            id: `dots-${row.id}`,
+                            className: "three-dots",
+                            onClick: () => handleTooltipToggle(row.id),
+                          })}
+                          {activeTooltipId === row.id && (
+                            <Tooltip
+                              id={row.id}
+                              onEdit={() => handleClick("edit", row)}
+                              onDelete={() => handleClick("delete", row)}
+                            />
+                          )}
+                        </>
+                      ) : (activeItem === "Candidates" &&
+                        col.accessor === "status") ||
+                        (activeItem === "Attendance" &&
+                          col.accessor === "attendanceStatus") ||
+                        (activeItem === "Leave" &&
+                          col.accessor === "leaveStatus") ? (
+                        <Dropdown
+                          options={STATUS_OPTIONS[activeItem]}
+                          value={capitalize(
+                            activeItem === "Candidates"
+                              ? row?.status
+                              : activeItem === "Attendance"
+                                ? row?.attendanceStatus
+                                : activeItem === "Leave"
+                                  ? row?.leaveStatus
+                                  : ""
+                          )}
+                          onChange={(value) => handleStatusChange(row.id, value)}
+                          placeholder="Status"
+                        />
+                      ) : (
+                        row[col.accessor]
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      {/* Show calendar and leave list only if activeItem is "Leave" */}
+      {activeItem === "Leave" && (
+        <div className="calender_wrapper">
+          <LeaveCalendar leaveData={leaveData}/>
+          <h2>Approved Leaves</h2>
+
+          {approvedLeave.map((ele, index) => (
+            <div key={index} className="leave-entry">
+              <div className="leave-info">
+                <div className="avatar">
+                  {/* <img src={ele.avatar} alt={ele.name} /> */}
+                </div>
+                <div className="text">
+                  <div className="name-date">
+                    <span className="name">{ele.name}</span>
+                    <span className="date">{ele.leaveDate}</span>
+                  </div>
+                  <div className="designation">{ele.position}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
+
 
 };
 

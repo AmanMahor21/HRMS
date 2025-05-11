@@ -228,7 +228,7 @@ export const MODAL_FIELDS = {
       placeholder: "Document",
       name: "leave_doc",
     },
-    { label: "Reason", placeholder: "Reason", name: "reason" },
+    { label: "Reason", placeholder: "Reason", name: "leave_reason" },
   ],
   Attendance: [
     { label: "Task", placeholder: "Task", name: "attendance_task" },
