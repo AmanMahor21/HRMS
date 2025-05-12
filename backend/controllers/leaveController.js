@@ -4,9 +4,6 @@ import Candidate from "../modals/Candidate.js";
 export const searchCandidates = async (req, res) => {
     try {
         const { query, type } = req.query;
-        // const { type } = req.params;
-        console.log(type, 'typeeeeeeeeee');
-
         // Ensure the query parameter is provided
         if (!query) {
             return res.status(400).json({
@@ -23,7 +20,6 @@ export const searchCandidates = async (req, res) => {
         if (type === "leave") {
             filter.attendance_status = "present";
         }
-        console.log(filter, 'pooooooooo');
         // Perform the search with the filter
         const candidates = await Candidate.find(filter);
 

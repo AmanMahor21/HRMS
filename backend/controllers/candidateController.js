@@ -36,50 +36,6 @@ export const addNewCandidate = async (req, res) => {
     }
 };
 
-
-// export const getAllUser = async (req, res) => {
-//     try {
-//         const { type } = req.query;
-
-//         let query = {};
-
-//         // Handle different types
-//         if (type === "candidates") {
-//             query = { status: { $ne: "selected" } }; // Exclude selected candidates
-//         } else if (type === "employees") {
-//             query = { status: "selected" }; // Get selected employees
-//         } else if (type === "leave") {
-//             query = { leave_date: { $exists: true, $ne: null } }; // Get users with leave_date
-//         }else if ( type === "attendance"){
-
-//         }
-//         else {
-//             return res.status(400).json({
-//                 status: 400,
-//                 message: "Invalid type. Must be 'candidate', 'employee', or 'left'.",
-//             });
-//         }
-
-//         const allUsers = await Candidate.find(query);
-//         console.log(allUsers, 'ooooooo');
-
-//         return res.status(200).json({
-//             status: 200,
-//             message: `${type.charAt(0).toUpperCase() + type.slice(1)} data fetched successfully`,
-//             users: allUsers,
-//         });
-
-//     } catch (error) {
-//         console.error('Error fetching users:', error);
-//         return res.status(500).json({
-//             status: 500,
-//             message: "Internal Server Error",
-//             error: error.message,
-//         });
-//     }
-// };
-
-
 export const getAllUser = async (req, res) => {
     try {
         const { type } = req.query;
