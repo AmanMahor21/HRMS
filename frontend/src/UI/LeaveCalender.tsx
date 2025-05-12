@@ -1,23 +1,24 @@
+
+
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../assets/css/calender.css"
+import "../assets/css/calender.css";
 
 interface LeaveCalendarProps {
   leaveData: { [date: string]: number };
 }
 
-export const LeaveCalendar: React.FC<LeaveCalendarProps> = ({ leaveData }) => {
+const LeaveCalendarComponent: React.FC<LeaveCalendarProps> = ({ leaveData }) => {
   const renderDayContents = (day: number, date: Date) => {
     const dateString = date.toLocaleDateString('en-CA');
     const leaveCount = leaveData[dateString] || 0;
 
     return (
-      <div >
+      <div>
         {day}
         {leaveCount > 0 && (
-          <div className="leave-count"
-          >
+          <div className="leave-count">
             {leaveCount}
           </div>
         )}
@@ -35,6 +36,7 @@ export const LeaveCalendar: React.FC<LeaveCalendarProps> = ({ leaveData }) => {
       />
     </div>
   );
-
 };
 
+// ✅ Export with React.memo to prevent unnecessary re-renders
+export const LeaveCalendar = React.memo(LeaveCalendarComponent);

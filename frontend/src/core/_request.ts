@@ -140,10 +140,11 @@ export const deleteUser = async (data: string) => {
   }
 };
 
-export const getSearch = async (data: string) => {
+export const getSearch = async (data: string, type: string) => {
+  console.log(type, 'ppp');
   try {
     const response = await axiosInstance.get(
-      `/api/leave/search-name?query=${data}`
+      `/api/leave/search-name?query=${data}&type=${type}`
     );
     return response.data;
   } catch (error) {

@@ -4,6 +4,7 @@ interface DropdownProps {
   onChange?: (value: string) => void;
   className?: string;
   placeholder?: string;
+  setValue?:(val:string | undefined)=> string
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
@@ -12,11 +13,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
   onChange,
   className = "status-dropdown",
   placeholder = "Select an option",
+  setValue = () => "new"
 }) => {
   return (
     <select
+    style={setValue ? { color: setValue(value) } : undefined}
     className={className}
-    // className={`${className} ${value ? "dropdown-selected" : ""}`}
 
     value={value ?? ""}
       onChange={(e) => onChange?.(e.target.value)}
@@ -25,7 +27,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
         {placeholder}
       </option>
       {options.map((option, index) => (
-        <option key={index} value={option}>
+        <option key={index} value={option}
+        style={{ color: "black" }}
+>
           {option}
         </option>
       ))}

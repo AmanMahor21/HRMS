@@ -51,6 +51,27 @@ export const mapCandidatesData = (data: any[] = []) =>
     };
   });
 
+export const unmapCandidatesData = (data: any[] = []) =>
+  data.map((item: any) => {
+    return {
+      _id: item.id,
+      full_name: item.name, // or item.employee (same value in your mapping)
+      email: item.email,
+      phone_number: item.phone,
+      position: item.position,
+      status: item.status,
+      leave_date: item.leaveDate,
+      department: item.department,
+      attendance_task: item.task,
+      leave_reason: item.reason,
+      leave_status: item.leaveStatus,
+      attendance_status: item.attendanceStatus,
+      leave_doc: item.docs,
+      date_of_joining: moment(item.DOJ, "DD/MM/YY").toDate(),
+      experience: Number(item.experience), // assuming it's numeric originally
+    };
+  });
+
 export const responseHandler = async (
   response: any,
   setState: any,
@@ -74,14 +95,13 @@ export const responseHandler = async (
   }
 };
 
-export function capitalize(s:string)
-{
-    return String(s[0]).toUpperCase() + String(s).slice(1);
+export function capitalize(s: string) {
+  return String(s[0]).toUpperCase() + String(s).slice(1);
 }
 
 
 export const applyFilters = (
-  filters: { status: string; position: string; attendance: string ,leave:string },
+  filters: { status: string; position: string; attendance: string, leave: string },
   setListings: any,
   tempList: any
 ) => {
@@ -93,10 +113,10 @@ export const applyFilters = (
       const matchesPosition = filters.position
         ? item.position?.toLowerCase() === filters.position.toLowerCase()
         : true;
-        const matchesAttendance = filters.attendance
+      const matchesAttendance = filters.attendance
         ? item.attendanceStatus?.toLowerCase() === filters.attendance.toLowerCase()
         : true;
-        const matchesleave = filters.leave
+      const matchesleave = filters.leave
         ? item.leaveStatus?.toLowerCase() === filters.leave.toLowerCase()
         : true;
       return matchesStatus && matchesPosition && matchesAttendance && matchesleave;
@@ -105,5 +125,12 @@ export const applyFilters = (
 };
 
 
+export const getColor = (value: string, colorMap: any, defaultColor: string = "black"): string => {
+  console.log(value, colorMap, 'pppp');
+  if (!value || !colorMap) return defaultColor;
 
+  // return colorMap[value.toLowerCase()] || defaultColor;
+  return colorMap[value.trim().toLowerCase()] || defaultColor;
+
+};
 

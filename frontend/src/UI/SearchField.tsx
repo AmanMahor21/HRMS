@@ -43,7 +43,7 @@ const SearchField = ({ values = "", handleUserClick }: SearchFieldProps) => {
 
     timeoutRef.current = window.setTimeout(async () => {
       try {
-        const res = await getSearch(query);
+        const res = await getSearch(query,"leave");
         if ([200, 201].includes(res?.status)) {
           setResults(res?.candidates || []);
         } else {

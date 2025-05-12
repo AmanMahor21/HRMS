@@ -57,9 +57,11 @@
 
 .status-dropdown {
   padding: 6px 12px;
-  font-size: 14px;
+  padding-left: 4px;
+  font-size: 17px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  background-color: #ffffff;
 }
 
 .search-add {

@@ -92,13 +92,14 @@ export const getAllUser = async (req, res) => {
         } else if (type === "employees") {
             users = await Candidate.find({ status: "selected" });
         } else if (type === "leave") {
-            users = await Candidate.find({ attendance_status: "present" });
+            // users = await Candidate.find({ attendance_status: "present" });
+            users = await Candidate.find({ leave_status: { $in: ["approve", "reject", "pending"] }, attendance_status: "present" });
         } else if (type === "attendance") {
             users = await Candidate.find({ status: "selected" });
         } else {
             users = await Candidate.find({ status: { $ne: "selected" } });
         }
-
+        console.log(users, 'bbbbbbbbbbbbb');
         return res.status(200).json({
             status: 200,
             message: `${type.charAt(0).toUpperCase() + type.slice(1)} data fetched successfully`,

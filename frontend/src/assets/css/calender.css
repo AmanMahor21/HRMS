@@ -64,13 +64,11 @@
     position: absolute;
     bottom: 0px;
     left: 23px;
-
     background-color: #6a0dad;
     color: white;
     border-radius: 50%;
     font-size: 12px;
     width: 22px;
-    padding-top: 4px;
     height: 22px;
     display: flex;
     align-items: center;

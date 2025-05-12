@@ -9,34 +9,42 @@ import { useEffect, useState } from "react";
 import { applyFilters } from "../../utils/_function";
 
 const Header = () => {
-  const { activeItem, setModalState, setListings,listing } = useAppContext();
+  const { activeItem, setModalState, setListings, listing } = useAppContext();
   const [status, setStatus] = useState("");
   const [position, setPosition] = useState("");
   const [attendanceStatus, setAttendanceStatus] = useState("");
   const [_leaveStatus, setLeaveStatus] = useState("");
   const [tempList, setTempList] = useState([]);
 
-useEffect(() => {
-  if (tempList.length === 0) {
-    setTempList(listing);
-  }
-}, [listing]);
+  useEffect(() => {
+    if (tempList.length === 0 && listing.length > 0) {
+      setTempList([...listing]); // clone just to be safe
+    }
+  }, [listing]);
 
-const handleDropdownChange = (value: string, key: string) => {
-  if (key === "status") setStatus(value);
-  if (key === "position") setPosition(value);
-  if (key === "attendance") setAttendanceStatus(value);
-  if (key === "leave") setLeaveStatus(value);
+  const handleDropdownChange = (value: string, key: string) => {
+    console.log(value, key, 'mnbbvv');
+    if (key === "status") setStatus(value);
+    if (key === "position") setPosition(value);
+    if (key === "attendance") setAttendanceStatus(value);
+    if (key === "leave") setLeaveStatus(value);
 
-  const updatedFilters = {
-    status: key === "status" ? value : "",
-    position: key === "position" ? value : "",
-    attendance: key === "attendance" ? value : "",
-    leave: key === "leave" ? value : "",
+    const updatedFilters = {
+      status: key === "status" ? value : "",
+      position: key === "position" ? value : "",
+      attendance: key === "attendance" ? value : "",
+      leave: key === "leave" ? value : "",
+    };
+
+    applyFilters(updatedFilters, setListings, tempList);
   };
 
-  applyFilters(updatedFilters, setListings, tempList);
-};
+  // Reset all dropdown values on activeItem change
+  useEffect(() => {
+    setStatus("");
+    setPosition("");
+    setAttendanceStatus("");
+  }, [activeItem]);
 
   return (
     <div className="header-container">
@@ -56,7 +64,6 @@ const handleDropdownChange = (value: string, key: string) => {
         </div>
       </div>
 
-      {/* Bottom Controls */}
       <div className="header-bottom">
         {/* Render two dropdowns if activeItem is Candidates */}
         {activeItem === "Candidates" && (
@@ -67,12 +74,15 @@ const handleDropdownChange = (value: string, key: string) => {
                 value={status}
                 onChange={(val: string) => handleDropdownChange(val, "status")}
                 placeholder="Status"
+                // setValue={(val) => getColor(val, colorMap[activeItem], "black")}
               />
               <Dropdown
                 options={POSITION_OPTIONS[activeItem]}
                 value={position}
                 onChange={(val: string) => handleDropdownChange(val, "position")}
                 placeholder="Position"
+                // setValue={(val) => getColor(val, colorMap[activeItem], "black")}
+
               />
             </div>
           </>
@@ -86,6 +96,8 @@ const handleDropdownChange = (value: string, key: string) => {
               value={position}
               onChange={(val: string) => handleDropdownChange(val, "position")}
               placeholder="Status"
+              // setValue={(val) => getColor(val, colorMap[activeItem], "black")}
+
             />
           </>
         )}
@@ -96,16 +108,20 @@ const handleDropdownChange = (value: string, key: string) => {
               value={attendanceStatus}
               onChange={(val: string) => handleDropdownChange(val, "attendance")}
               placeholder="Status"
+              // setValue={(val) => getColor(val, colorMap[activeItem], "black")}
+
             />
           </>
         )}
-          {activeItem == "Leave" && (
+        {activeItem == "Leave" && (
           <>
             <Dropdown
               options={STATUS_OPTIONS[activeItem]}
               value={attendanceStatus}
               onChange={(val: string) => handleDropdownChange(val, "leave")}
               placeholder="Status"
+              // setValue={(val) => getColor(val, colorMap[activeItem], "black")}
+
             />
           </>
         )}

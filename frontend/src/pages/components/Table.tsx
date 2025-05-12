@@ -6,11 +6,14 @@ import { getAllUsers, updateUser } from "../../core/_request";
 import { STATUS_OPTIONS, tableConfigs } from "../../core/const";
 import {
   capitalize,
+  getColor,
   mapCandidatesData,
   responseHandler,
+  unmapCandidatesData,
 } from "../../utils/_function";
 import Tooltip from "./Tooltip";
 import { LeaveCalendar } from "../../UI/LeaveCalender";
+import  {colorMap}  from "../../core/dropdownConst";
 
 const Table = () => {
   const { activeItem, setModalState, listing, setListings, setLoader } =
@@ -24,15 +27,19 @@ const Table = () => {
 
   // Fill leave aprove list
   useEffect(() => {
-    const status = listing.filter(ele => ele.leaveStatus == 'approve')
-    const updatedData: { [key: string]: number } = {};
-    setApprovedLeave(status)
-    approvedLeave.forEach((ele) => {
-      updatedData[ele.leaveDate] = (updatedData[ele.leaveDate] || 0) + 1;
-    });
+    const approved = listing.filter((ele: any) => ele.leaveStatus === 'approve');
 
-    setLeaveData(updatedData);
-  }, [approvedLeave]);
+    const grouped: { [key: string]: number } = {};
+    for (const item of approved) {
+      if (item.leaveDate) {
+        grouped[item.leaveDate] = (grouped[item.leaveDate] || 0) + 1;
+      }
+    }
+
+    setApprovedLeave(approved);
+    setLeaveData(grouped);
+  }, [listing]);
+
 
   // HANDLE MODAL
   const handleTooltipToggle = (id: number) => {
@@ -59,8 +66,9 @@ const Table = () => {
 
   const handleStatusChange = async (id: string, value: string) => {
     const record = listing?.find((item: any) => item?.id === id);
+    const unmap = unmapCandidatesData([record])[0];
     const response = await updateUser({
-      ...record,
+      ...unmap,
       ...(activeItem === "Candidates"
         ? { status: value?.toLocaleLowerCase() }
         : activeItem === "Attendance"
@@ -75,6 +83,9 @@ const Table = () => {
       setLoader
     );
   };
+console.log(getColor('approve', colorMap[activeItem] ,"black"),'qqqqqqqqq');
+console.log('activeItem:', activeItem);
+console.log('colorMap[activeItem]:', colorMap["Leave"]);
 
   return (
     <div className="leave_wrapper">
@@ -129,6 +140,8 @@ const Table = () => {
                           )}
                           onChange={(value) => handleStatusChange(row.id, value)}
                           placeholder="Status"
+                          setValue={(val) => getColor(val, colorMap[activeItem] ,"black")}
+
                         />
                       ) : (
                         row[col.accessor]
