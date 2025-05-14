@@ -54,7 +54,6 @@ export const updateAttendance = async (req, res) => {
         return res.status(500).json({
             status: 500,
             message: "Internal Server Error",
-            error: error.message,
         });
     }
 };
@@ -65,7 +64,6 @@ export const getAttendanceUsers = async (req, res) => {
     try {
 
         const leaveAppliedUsers = await Attendance.find().populate('candidate');
-        console.log(leaveAppliedUsers, 'mmmmm');
         res.status(200).json({
             status: 200,
             message: "Leave applied users fetched successfully.",

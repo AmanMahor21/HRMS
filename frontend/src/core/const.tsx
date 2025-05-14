@@ -3,6 +3,7 @@ import { FiUsers } from "react-icons/fi";
 import { HiOutlineUserPlus } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
 import ThreeDotsIcon from "../assets/svg/ThreeDotsIcon";
+import { Profiler } from "react";
 
 // SIDE BAR
 export const SIDEBAR_MENUS = [
@@ -67,7 +68,22 @@ export const tableConfigs: Record<
 
   Employees: {
     columns: [
-      { header: "Profile", accessor: "profile" },
+      {
+        header: "Profile",
+        accessor: "profile",
+        render: ({ profile }: { profile: string }) => (
+          <img
+            src={profile || "https://as1.ftcdn.net/v2/jpg/12/47/50/02/1000_F_1247500272_kJB5cpMOHgbzfXeqg2spytDlTMI6J7zT.jpg"}
+            alt="Profile"
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+        ),
+      },
       { header: "Employee Name", accessor: "name" },
       { header: "Email Address", accessor: "email" },
       { header: "Phone Number", accessor: "phone" },
@@ -106,8 +122,22 @@ export const tableConfigs: Record<
 
   Attendance: {
     columns: [
-      { header: "Profile", accessor: "profile" },
-      { header: "Employee", accessor: "employee" },
+      {
+        header: "Profile",
+        accessor: "profile",
+        render: ({ profile }: { profile: string }) => (
+          <img
+            src={profile || "https://as1.ftcdn.net/v2/jpg/12/47/50/02/1000_F_1247500272_kJB5cpMOHgbzfXeqg2spytDlTMI6J7zT.jpg"}
+            alt="Profile"
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+        ),
+      },      { header: "Employee", accessor: "employee" },
       { header: "Position", accessor: "position" },
       { header: "Department", accessor: "department" },
       { header: "Task", accessor: "task" },
@@ -142,8 +172,22 @@ export const tableConfigs: Record<
 
   Leave: {
     columns: [
-      { header: "Profile", accessor: "profile" },
-      { header: "Name", accessor: "name" },
+      {
+        header: "Profile",
+        accessor: "profile",
+        render: ({ profile }: { profile: string }) => (
+          <img
+            src={profile || "https://as1.ftcdn.net/v2/jpg/12/47/50/02/1000_F_1247500272_kJB5cpMOHgbzfXeqg2spytDlTMI6J7zT.jpg"}
+            alt="Profile"
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+        ),
+      },      { header: "Name", accessor: "name" },
       { header: "Date", accessor: "leaveDate" },
       { header: "Reason", accessor: "reason" },
       { header: "Status", accessor: "leaveStatus" },

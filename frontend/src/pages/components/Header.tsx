@@ -1,7 +1,7 @@
 import { FaBell, FaSms } from "react-icons/fa";
 import "../../assets/css/header.css";
 import { useAppContext } from "../../context/AppContext";
-import { POSITION_OPTIONS, STATUS_OPTIONS } from "../../core/const";
+import { POSITION_OPTIONS, STATUS_OPTIONS } from "../../core/const.tsx";
 import Button from "../../UI/Button";
 import { Dropdown } from "../../UI/Dropdown";
 import SearchField from "../../UI/SearchField";
@@ -23,7 +23,6 @@ const Header = () => {
   }, [listing]);
 
   const handleDropdownChange = (value: string, key: string) => {
-    console.log(value, key, 'mnbbvv');
     if (key === "status") setStatus(value);
     if (key === "position") setPosition(value);
     if (key === "attendance") setAttendanceStatus(value);

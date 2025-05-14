@@ -1,6 +1,6 @@
-import { useFormik } from "formik"; // Import useFormik from Formik
+import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as Yup from "yup"; // Import Yup for validation
+import * as Yup from "yup";
 import { registerUser } from "../core/_request";
 import Button from "../UI/Button";
 import Header2 from "../UI/Header2";

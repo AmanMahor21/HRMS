@@ -106,7 +106,6 @@ export const addNewLeave = async (req, res) => {
             });
         }
 
-        console.log(updatedCandidate, 'Updated Candidate');  // For debugging purposes (can be removed in production)
 
         // Respond with the updated candidate information
         return res.status(200).json({
@@ -148,7 +147,6 @@ export const addLeave = async (req, res) => {
         }
 
         const leaveAppliedUsers = await Leave.find().populate('candidate');
-        console.log(leaveAppliedUsers, 'mmmmm');
 
         const newLeave = new Leave({
             leave_reason,
@@ -160,7 +158,6 @@ export const addLeave = async (req, res) => {
         });
 
         const savedLeave = await newLeave.save();
-        console.log(savedLeave, 'pppppp');
         res.status(201).json({
             status: 201,
             message: "Leave request submitted successfully.",

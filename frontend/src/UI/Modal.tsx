@@ -63,7 +63,6 @@ const FormModal = () => {
           setLoader
         );
       } else if (activeItem === "Leave" && modalState?.status === true) {
-        console.log(values,'qqqqqqqqqqqqqqq');
         const response = await updateUser({
           ...values,
         });

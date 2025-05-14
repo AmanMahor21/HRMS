@@ -6,6 +6,11 @@ const CandidateSchema = new mongoose.Schema({
         required: true
 
     },
+    profile: {
+        type: String,
+        // required: true
+
+    },
     email: {
         type: String,
         unique: true,

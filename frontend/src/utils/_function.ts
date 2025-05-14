@@ -33,6 +33,7 @@ export const mapCandidatesData = (data: any[] = []) =>
     return {
       no: index + 1,
       id: item._id,
+      profile: item.profile,
       name: item.full_name,
       employee: item.full_name,
       email: item.email,
@@ -126,10 +127,7 @@ export const applyFilters = (
 
 
 export const getColor = (value: string, colorMap: any, defaultColor: string = "black"): string => {
-  console.log(value, colorMap, 'pppp');
   if (!value || !colorMap) return defaultColor;
-
-  // return colorMap[value.toLowerCase()] || defaultColor;
   return colorMap[value.trim().toLowerCase()] || defaultColor;
 
 };

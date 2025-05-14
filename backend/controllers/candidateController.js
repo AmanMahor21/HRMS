@@ -1,4 +1,5 @@
 import Candidate from "../modals/Candidate.js";
+import axios from 'axios';
 
 export const addNewCandidate = async (req, res) => {
     try {
@@ -55,7 +56,6 @@ export const getAllUser = async (req, res) => {
         } else {
             users = await Candidate.find({ status: { $ne: "selected" } });
         }
-        console.log(users, 'bbbbbbbbbbbbb');
         return res.status(200).json({
             status: 200,
             message: `${type.charAt(0).toUpperCase() + type.slice(1)} data fetched successfully`,
@@ -77,7 +77,6 @@ export const findOneUser = async (req, res) => {
         const { email } = req.params;
 
         const allUsers = await Candidate.findOne({ email });
-        console.log(allUsers, 'sssssss');
 
         return res.status(201).json({
             status: 201,
@@ -142,7 +141,6 @@ export const updateUser = async (req, res) => {
         const { id, full_name, email, phone_number, department, status, position, date_of_joining, experience, resume, leave_reason, leave_date, leave_doc, leave_status, attendance_status, attendance_task } = req.body;
         // const { id } = req.params;,
 
-        console.log(id, 'xxx');
         const updatedFields = {
             ...(full_name && { full_name }),
             ...(email && { email }),
@@ -160,7 +158,12 @@ export const updateUser = async (req, res) => {
             ...(attendance_status && { attendance_status }),
             ...(attendance_task && { attendance_task })
         };
-        console.log(updatedFields, "updatedFields ");
+        // console.log(process.env.UNSPLASH_ACCESS_KEY, "process.env.UNSPLASH_ACCESS_KEY ");
+
+        if (full_name) {
+            const image = await axios.get(`https://api.unsplash.com/photos/random?query=face&client_id=${process.env.UNSPLASH_ACCESS_KEY}&sig=${Math.floor(Math.random() * 1000)}`);
+            updatedFields.profile = image.data.urls.small;
+        }
         const existingUser = await Candidate.findById(id);
         if (!existingUser) {
             return res.status(404).json({
@@ -212,7 +215,6 @@ export const deleteUser = async (req, res) => {
         // const { full_name, email, phone_number, department, position, date_of_joining } = req.body;
         const { id } = req.params;
 
-        console.log(id, 'xxx');
 
         const deletedUser = await Candidate.findByIdAndDelete(id);
 
