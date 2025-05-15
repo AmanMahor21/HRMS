@@ -3,7 +3,6 @@ import { FiUsers } from "react-icons/fi";
 import { HiOutlineUserPlus } from "react-icons/hi2";
 import { MdLogout } from "react-icons/md";
 import ThreeDotsIcon from "../assets/svg/ThreeDotsIcon";
-import { Profiler } from "react";
 
 // SIDE BAR
 export const SIDEBAR_MENUS = [
